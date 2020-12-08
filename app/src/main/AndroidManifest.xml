@@ -11,12 +11,18 @@
         android:roundIcon="@drawable/healthcoachlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthCoach">
+        <activity android:name=".Forms.ExericseForm"></activity>
+        <activity android:name=".Forms.FoodForm" />
+        <activity android:name=".dietRecommend" />
+        <activity android:name=".FoodTrack" />
+        <activity android:name=".ExerciseTrack" />
+        <activity android:name=".taskbar" />
+
         <meta-data
             android:name="com.samsung.android.health.permission.read"
-            android:value="com.samsung.shealth.step_daily_trend;com.samsung.health.exercise"/>
+            android:value="com.samsung.shealth.step_daily_trend;com.samsung.health.exercise" />
 
-
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Settings" />
         <activity android:name=".HomePage" />
         <activity android:name=".MainActivity">
             <intent-filter>

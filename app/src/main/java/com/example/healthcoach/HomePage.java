@@ -1,6 +1,7 @@
 package com.example.healthcoach;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -8,10 +9,12 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -31,6 +34,8 @@ public class HomePage extends AppCompatActivity   {
     TextView steps;
      double MagnitudePrevious = 0;
      Integer stepCount = 0;
+     CardView exercise, Food;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,26 @@ public class HomePage extends AppCompatActivity   {
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         steps =findViewById(R.id.steps_title);
+        exercise =findViewById(R.id.exerciseTab);
+        Food=findViewById(R.id.dietTab);
+
+        Food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(HomePage.this, FoodTrack.class);
+                startActivity(intent);
+            }
+        });
+        exercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(HomePage.this, ExerciseTrack.class);
+                startActivity(intent);
+            }
+        });
+
         SensorEventListener stepDetector = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
@@ -54,7 +79,7 @@ public class HomePage extends AppCompatActivity   {
                     double MagnitudeDelta = Magnitude-MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
 
-                    if (MagnitudeDelta > 8){
+                    if (MagnitudeDelta > 3){
                         stepCount++;
                     }
                     steps.setText(stepCount.toString() +"/5000 steps");
