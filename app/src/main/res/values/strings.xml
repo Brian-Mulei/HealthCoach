@@ -2,4 +2,26 @@
     <string name="app_name">HealthCoach</string>
     <string name="email">Email</string>
     <string name="username">UserName</string>
+
+    <string-array name="Exercises">
+
+        <item>Press Ups </item>
+        <item>Crunches </item>
+        <item>Bench Press</item>
+        <item>Curls</item>
+        <item>Squats</item>
+        <item>Planks</item>
+
+    </string-array>
+
+    <string-array name="CaloriesPerRep">
+
+        <item>5 </item>
+        <item>8 </item>
+        <item>12 </item>
+        <item>15</item>
+        <item>10</item>
+        <item>25</item>
+
+    </string-array>
 </resources>

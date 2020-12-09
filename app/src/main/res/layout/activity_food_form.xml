@@ -6,4 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".Forms.FoodForm">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="20dp"
+        tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:id="@+id/foodNamelay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Name of food :"
+    android:textSize="20sp"
+    />
+        <EditText
+            android:id="@+id/foodName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mealName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/foodNamelay"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meal :"
+            android:textSize="20sp"
+            />
+        <Spinner
+            android:id="@+id/menuDropDown"
+            android:background="@android:drawable/btn_dropdown"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/Calorie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/mealName">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calories :"
+            android:inputType="number"
+            android:textSize="20sp"
+            />
+        <EditText
+            android:id="@+id/calorie"
+            android:digits="1234567890"
+            android:maxLength="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Calorie"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:"
+            android:textSize="20sp"
+            />
+        <EditText
+            android:id="@+id/mealDate"
+            android:hint=" Click to add Day"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="false"
+             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/constra"
+        android:gravity="center"
+        >
+
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:text="Save "
+            />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel "/>
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
