@@ -21,11 +21,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ExericseForm extends AppCompatActivity {
     Button cancel ,add;
     EditText set,rep,exercise;
-     @Override
+    DatabaseReference databaseReference;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exericse_form);
 
+         databaseReference = FirebaseDatabase.getInstance().getReference("User");
         set=findViewById(R.id.sets);
         rep=findViewById(R.id.reps);
         exercise=findViewById(R.id.exercise);
@@ -58,6 +60,7 @@ public class ExericseForm extends AppCompatActivity {
         String exercises=exercise.getText().toString().trim();
         DatabaseReference mDatabase;
 
+        String clientId = databaseReference.push().getKey();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if (TextUtils.isEmpty(exercises)  ) {
@@ -65,7 +68,7 @@ public class ExericseForm extends AppCompatActivity {
         else {
 
             ExerciseModel exmodel = new ExerciseModel( exercises,sets,reps,calorieBurned);
-            mDatabase.child("Exercise").child(exercises).setValue(exmodel);
+            mDatabase.child("User").child(clientId).child("Exercise").setValue(exmodel);
 
             Toast.makeText(this, "Exercise Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(ExericseForm.this, FoodTrack.class));

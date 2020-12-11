@@ -32,6 +32,7 @@ public class FoodForm extends AppCompatActivity {
 
     EditText calorie,foodName,meall;
     Button cancel ,add;
+    DatabaseReference databaseReference;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class FoodForm extends AppCompatActivity {
 
          calorie=findViewById(R.id.calorie);
          meall=findViewById(R.id.meal);
+         databaseReference = FirebaseDatabase.getInstance().getReference("User");
 
         foodName=findViewById(R.id.foodName);
         add =findViewById(R.id.add);
@@ -67,6 +69,8 @@ public class FoodForm extends AppCompatActivity {
     String food=foodName.getText().toString().trim();
         DatabaseReference mDatabase;
 // ...
+        String clientId = databaseReference.push().getKey();
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if (TextUtils.isEmpty(food)  ) {
@@ -74,7 +78,7 @@ public class FoodForm extends AppCompatActivity {
         else {
 
              Model model = new Model(food,meal,calories);
-            mDatabase.child("Food").child(meal).setValue(model);
+            mDatabase.child("User").child(clientId).child("Food").child(meal).setValue(model);
 
             Toast.makeText(this, "Food Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(FoodForm.this, FoodTrack.class));
