@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.healthcoach.FoodTrack;
+import com.example.healthcoach.HomePage;
 import com.example.healthcoach.Model;
 import com.example.healthcoach.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -53,7 +54,7 @@ public class FoodForm extends AppCompatActivity {
          cancel.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 startActivity(new Intent(FoodForm.this, FoodTrack.class));
+                 startActivity(new Intent(FoodForm.this, HomePage.class));
              }
          });
 
