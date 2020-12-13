@@ -1,4 +1,4 @@
-package com.example.healthcoach;
+package com.example.healthcoach.Models;
 
 public class Model {
     String Name;

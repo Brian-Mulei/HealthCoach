@@ -2,31 +2,22 @@ package com.example.healthcoach.Forms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.healthcoach.FoodTrack;
 import com.example.healthcoach.HomePage;
-import com.example.healthcoach.Model;
+import com.example.healthcoach.Models.Model;
 import com.example.healthcoach.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.FirebaseApp;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 
 public class FoodForm extends AppCompatActivity {
 
@@ -51,6 +42,8 @@ public class FoodForm extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                         send();
+                 startActivity(new Intent(FoodForm.this, HomePage.class));
+
              }
          });
          cancel.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +65,15 @@ public class FoodForm extends AppCompatActivity {
         String clientId = databaseReference.push().getKey();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        String personName = acct.getDisplayName();
 
         if (TextUtils.isEmpty(food)  ) {
             Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
         else {
 
              Model model = new Model(food,meal,calories);
-            mDatabase.child("User").child(clientId).child("Food").child(meal).setValue(model);
+            mDatabase.child("User").child(personName).child("Food").child(meal).setValue(model);
 
             Toast.makeText(this, "Food Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(FoodForm.this, FoodTrack.class));
