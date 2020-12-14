@@ -32,12 +32,14 @@ public class FoodForm extends AppCompatActivity {
 
          calorie=findViewById(R.id.calorie);
          meall=findViewById(R.id.meal);
+         //  reference to the firebase dbase
          databaseReference = FirebaseDatabase.getInstance().getReference("User");
 
         foodName=findViewById(R.id.foodName);
         add =findViewById(R.id.add);
         cancel=findViewById(R.id.cancel);
 
+        //methods for add button
          add.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -46,6 +48,8 @@ public class FoodForm extends AppCompatActivity {
 
              }
          });
+         //methods for cancel button
+
          cancel.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -64,6 +68,7 @@ public class FoodForm extends AppCompatActivity {
 // ...
         String clientId = databaseReference.push().getKey();
 
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         String personName = acct.getDisplayName();
@@ -72,7 +77,10 @@ public class FoodForm extends AppCompatActivity {
             Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
         else {
 
-             Model model = new Model(food,meal,calories);
+            //new instance for the model in order to capture the data
+            Model model = new Model(food,meal,calories);
+            //sendt he model to firebase
+
             mDatabase.child("User").child(personName).child("Food").child(meal).setValue(model);
 
             Toast.makeText(this, "Food Information Sent", Toast.LENGTH_SHORT).show();

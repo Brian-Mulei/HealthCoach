@@ -4,15 +4,17 @@ public class ExerciseModel {
      String Exercise;
     String sets;
     String reps;
-    Double calorieBurned;
+    String calorieBurned;
 
-    public ExerciseModel(String exercise, String sets, String reps, Double calorieBurned) {
+    public ExerciseModel(String exercise, String sets, String reps, String calorieBurned) {
         Exercise = exercise;
         this.sets = sets;
         this.reps = reps;
         this.calorieBurned = calorieBurned;
     }
+public ExerciseModel(){
 
+}
     public String getExercise() {
         return Exercise;
     }
@@ -37,11 +39,11 @@ public class ExerciseModel {
         this.reps = reps;
     }
 
-    public Double getCalorieBurned() {
+    public String getCalorieBurned() {
         return calorieBurned;
     }
 
-    public void setCalorieBurned(Double calorieBurned) {
+    public void setCalorieBurned(String calorieBurned) {
         this.calorieBurned = calorieBurned;
     }
 }

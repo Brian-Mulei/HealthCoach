@@ -19,7 +19,7 @@ public class FoodTrack extends AppCompatActivity {
         setContentView(R.layout.activity_food_track);
 
         add =findViewById(R.id.add);
-
+        //what happens when + button is clicked
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

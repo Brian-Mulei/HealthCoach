@@ -16,7 +16,6 @@
         <activity android:name=".dietRecommend" />
         <activity android:name=".FoodTrack" />
         <activity android:name=".ExerciseTrack" />
-        <activity android:name=".taskbar" />
 
         <meta-data
             android:name="com.samsung.android.health.permission.read"

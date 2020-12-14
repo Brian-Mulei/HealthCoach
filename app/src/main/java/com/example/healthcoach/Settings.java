@@ -32,7 +32,7 @@ public class Settings extends AppCompatActivity {
             String personId = acct.getId();
             Uri personPhoto = acct.getPhotoUrl();
 
-
+            //get user email info
             Email.setText(personEmail);
             UserName.setText(personName);
             Glide.with(this).load(String.valueOf(personPhoto)).into(imageView);

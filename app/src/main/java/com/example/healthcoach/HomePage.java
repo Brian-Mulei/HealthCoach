@@ -67,10 +67,12 @@ public class HomePage extends AppCompatActivity   {
             }
         });
 
+        //New instance of the sensor
         SensorEventListener stepDetector = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if (sensorEvent!= null){
+                    //get the acceleration of the axies
                     float x_acceleration = sensorEvent.values[0];
                     float y_acceleration = sensorEvent.values[1];
                     float z_acceleration = sensorEvent.values[2];
@@ -78,7 +80,7 @@ public class HomePage extends AppCompatActivity   {
                     double Magnitude = Math.sqrt(x_acceleration*x_acceleration + y_acceleration*y_acceleration + z_acceleration*z_acceleration);
                     double MagnitudeDelta = Magnitude-MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
-
+                //if magnitude delta is lowwer, sensr is more sensitivity
                     if (MagnitudeDelta > 3){
                         stepCount++;
                     }
