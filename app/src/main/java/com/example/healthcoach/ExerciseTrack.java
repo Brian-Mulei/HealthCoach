@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.healthcoach.List.ExerciseList;
 import com.example.healthcoach.Models.ExerciseModel;
@@ -28,9 +29,7 @@ import java.util.List;
 public class ExerciseTrack extends AppCompatActivity {
 
     FloatingActionButton add;
-    DatabaseReference databaseReference;
-    ListView listViewExercise;
-    List<ExerciseModel> exerciseModelList;
+    TextView t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +37,9 @@ public class ExerciseTrack extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_track);
 
         add =findViewById(R.id.add);
-        databaseReference = FirebaseDatabase.getInstance().getReference("User");
-
-        listViewExercise=findViewById(R.id.listviewExercise);
-        exerciseModelList=new ArrayList<>();
-          GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        String personName = acct.getDisplayName();
+        t= findViewById(R.id.t);
+        mydbhandler dbHandler = new mydbhandler(this);
+        t.setText(dbHandler.loadEX());
 
         //what happens when + button is clicked
         add.setOnClickListener(new View.OnClickListener() {
@@ -56,5 +52,6 @@ public class ExerciseTrack extends AppCompatActivity {
         });
 
     }
+
 
 }

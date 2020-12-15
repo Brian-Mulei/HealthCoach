@@ -9,12 +9,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.healthcoach.Models.ExerciseModel;
 import com.example.healthcoach.FoodTrack;
 import com.example.healthcoach.HomePage;
 import com.example.healthcoach.R;
+import com.example.healthcoach.mydbhandler;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +29,6 @@ import static java.lang.Math.round;
 public class ExericseForm extends AppCompatActivity {
     Button cancel ,add;
     EditText set,rep,exercise;
-    DatabaseReference databaseReference;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +36,11 @@ public class ExericseForm extends AppCompatActivity {
          GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
          String personName = acct.getDisplayName();
 
-         databaseReference = FirebaseDatabase.getInstance().getReference("User").child(personName).child("Exercise");
-        set=findViewById(R.id.sets);
+         set=findViewById(R.id.sets);
         rep=findViewById(R.id.reps);
         exercise=findViewById(R.id.exercise);
         add =findViewById(R.id.add);
         cancel=findViewById(R.id.cancel);
-
 
 //method for add button
         add.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +61,9 @@ public class ExericseForm extends AppCompatActivity {
             }
         });
 
-
-
     }
 
-//method for pushing to firebase
-    private void send() {
+     private void send() {
 
         String sets= set.getText().toString().trim();
         String reps=rep.getText().toString().trim();
@@ -78,11 +74,8 @@ public class ExericseForm extends AppCompatActivity {
 
         String calorieBurned=String.valueOf(calorieBurner);
         String exercises=exercise.getText().toString().trim();
-        DatabaseReference mDatabase;
 
-        String clientId = databaseReference.push().getKey();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         String personName = acct.getDisplayName();
 
 
@@ -90,10 +83,7 @@ public class ExericseForm extends AppCompatActivity {
             Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
         else {
 
-            //new instance for the model in order to capture the data
-            ExerciseModel exmodel = new ExerciseModel( exercises,sets,reps,calorieBurned);
-            //send the model to firebase
-            mDatabase.child("User").child(personName).child("Exercise").setValue(exmodel);
+            mydbhandler handler=new mydbhandler(ExericseForm.this); handler.addEx(exercises,sets,reps,calorieBurned);
 
             Toast.makeText(this, "Exercise Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(ExericseForm.this, FoodTrack.class));

@@ -14,6 +14,7 @@ import com.example.healthcoach.FoodTrack;
 import com.example.healthcoach.HomePage;
 import com.example.healthcoach.Models.Model;
 import com.example.healthcoach.R;
+import com.example.healthcoach.mydbhandler;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.DatabaseReference;
@@ -77,11 +78,7 @@ public class FoodForm extends AppCompatActivity {
             Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
         else {
 
-            //new instance for the model in order to capture the data
-            Model model = new Model(food,meal,calories);
-            //sendt he model to firebase
-
-            mDatabase.child("User").child(personName).child("Food").child(meal).setValue(model);
+            mydbhandler handler=new mydbhandler(FoodForm.this); handler.addFood(food,meal,calories);
 
             Toast.makeText(this, "Food Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(FoodForm.this, FoodTrack.class));
