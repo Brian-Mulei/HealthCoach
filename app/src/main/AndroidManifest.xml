@@ -10,16 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/healthcoachlogo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HealthCoach">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Forms.ExericseForm" />
         <activity android:name=".Forms.FoodForm" />
-        <activity android:name=".dietRecommend" />
         <activity android:name=".FoodTrack" />
         <activity android:name=".ExerciseTrack" />
-
-        <meta-data
-            android:name="com.samsung.android.health.permission.read"
-            android:value="com.samsung.shealth.step_daily_trend;com.samsung.health.exercise" />
 
         <activity android:name=".Settings" />
         <activity android:name=".HomePage" />

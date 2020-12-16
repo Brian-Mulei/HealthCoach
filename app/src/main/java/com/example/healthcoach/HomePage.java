@@ -9,11 +9,17 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -35,13 +41,12 @@ public class HomePage extends AppCompatActivity   {
      double MagnitudePrevious = 0;
      Integer stepCount = 0;
      CardView exercise, Food;
-
+        ImageButton settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        setTitle("Health Coach");
 
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -49,7 +54,8 @@ public class HomePage extends AppCompatActivity   {
         steps =findViewById(R.id.steps_title);
         exercise =findViewById(R.id.exerciseTab);
         Food=findViewById(R.id.dietTab);
-            //methods for clicking on the cards
+        settings=findViewById(R.id.setting);
+             //methods for clicking on the cards
         Food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +72,13 @@ public class HomePage extends AppCompatActivity   {
                 startActivity(intent);
             }
         });
-
+    settings.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(HomePage.this, Settings.class);
+            startActivity(intent);
+        }
+    });
         //New instance of the sensor
         SensorEventListener stepDetector = new SensorEventListener() {
             @Override
@@ -100,6 +112,7 @@ public class HomePage extends AppCompatActivity   {
 
     }
 
+
     protected void onPause() {
         super.onPause();
 
@@ -122,7 +135,6 @@ public class HomePage extends AppCompatActivity   {
 
     protected void onResume() {
         super.onResume();
-
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         stepCount = sharedPreferences.getInt("stepCount", 0);
     }
