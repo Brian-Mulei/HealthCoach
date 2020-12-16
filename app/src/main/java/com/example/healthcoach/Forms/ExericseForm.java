@@ -1,7 +1,6 @@
 package com.example.healthcoach.Forms;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,20 +8,19 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.healthcoach.Models.ExerciseModel;
 import com.example.healthcoach.FoodTrack;
 import com.example.healthcoach.HomePage;
 import com.example.healthcoach.R;
 import com.example.healthcoach.mydbhandler;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import static java.lang.Math.round;
 
@@ -74,16 +72,17 @@ public class ExericseForm extends AppCompatActivity {
 
         String calorieBurned=String.valueOf(calorieBurner);
         String exercises=exercise.getText().toString().trim();
+         Date date = Calendar.getInstance().getTime();
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+         String strDate = dateFormat.format(date);
 
-         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        String personName = acct.getDisplayName();
 
-
-        if (TextUtils.isEmpty(exercises)  ) {
+         if (TextUtils.isEmpty(exercises)  ) {
             Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
         else {
 
-            mydbhandler handler=new mydbhandler(ExericseForm.this); handler.addEx(exercises,sets,reps,calorieBurned);
+            mydbhandler handler=new mydbhandler(ExericseForm.this);
+            handler.addEx(exercises,sets,reps,calorieBurned,strDate);
 
             Toast.makeText(this, "Exercise Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(ExericseForm.this, FoodTrack.class));

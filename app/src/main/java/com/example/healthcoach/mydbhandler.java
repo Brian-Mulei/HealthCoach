@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Calendar;
+
 public class mydbhandler extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -20,11 +24,14 @@ public class mydbhandler extends SQLiteOpenHelper {
     private static final String EX_CALORIE = "calorie";
     private static final String FOOD_NAME = "name";
     private static final String FOOD_TYPE = "type";
-    private static final String FOOD_CALORI = "calorie";
-     private final Context context;
-    private String CREATE_EX_TABLE= "CREATE TABLE " + EXERCISE  + "(" + EXERCISE_NAME + " TEXT," + EX_SET +" TEXT," + EX_REP + " TEXT," + EX_CALORIE + " TEXT "+ ")";
+    private static final String FOOD_TIME="dofinput";
+    private static final String EX_TIME="dofinput";
 
-    private String CREATE_FOOD_TABLE= "CREATE TABLE " + FOOD  + "(" + FOOD_NAME + " TEXT," + FOOD_TYPE +" TEXT," + FOOD_CALORI + " TEXT," +  " TEXT " + ")";
+    private static final String FOOD_CALORI = "calorie";
+      private final Context context;
+    private String CREATE_EX_TABLE= "CREATE TABLE " + EXERCISE  + "(" + EXERCISE_NAME + " TEXT," + EX_SET +" TEXT," + EX_REP + " TEXT," + EX_CALORIE + " TEXT ,"+ EX_TIME + " TEXT,"+ "TEXT"+ ")";
+
+    private String CREATE_FOOD_TABLE= "CREATE TABLE " + FOOD  + "(" + FOOD_NAME + " TEXT," + FOOD_TYPE +" TEXT," + FOOD_CALORI + " TEXT," + FOOD_TIME + " TEXT," + "TEXT"+ ")";
 
     private String DROP_TABLE = "DROP TABLE IF EXISTS " + EXERCISE ;
     private String DROP_TABLE1 = "DROP TABLE IF EXISTS " + FOOD ;
@@ -43,13 +50,15 @@ public class mydbhandler extends SQLiteOpenHelper {
       db.execSQL(DROP_TABLE1); onCreate(db);
 
     }
-    public void addEx(String exercise, String sets, String reps, String calorieBurned) {
+    public void addEx(String exercise, String sets, String reps, String calorieBurned,String time) {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(mydbhandler.EXERCISE_NAME,exercise);
         values.put(mydbhandler.EX_SET,sets);
         values.put(mydbhandler.EX_REP,reps);
         values.put(mydbhandler.EX_CALORIE,calorieBurned);
+        values.put(mydbhandler.EX_TIME,time);
+
         long status=db.insert(EXERCISE ,null,values);
         if(status<=0){
             Toast.makeText(context, "Insertion Unsuccessful", Toast.LENGTH_SHORT).show();
@@ -59,13 +68,15 @@ public class mydbhandler extends SQLiteOpenHelper {
         }
         db.close();
     }
-    public void addFood(String name, String meal, String calories) {
+    public void addFood(String name, String meal, String calories, String time) {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(mydbhandler.FOOD_NAME,name);
         values.put(mydbhandler.FOOD_TYPE,meal);
         values.put(mydbhandler.FOOD_CALORI,calories);
-         long status=db.insert(FOOD ,null,values);
+        values.put(mydbhandler.FOOD_TIME,time);
+
+        long status=db.insert(FOOD ,null,values);
         if(status<=0){
             Toast.makeText(context, "Insertion Unsuccessful", Toast.LENGTH_SHORT).show();
         }
@@ -86,14 +97,13 @@ public class mydbhandler extends SQLiteOpenHelper {
             String result_1 = cursor.getString(1);
             String result_2 = cursor.getString(2);
             String result_3 = cursor.getString(3);
-            result +=  "Exercise " +result_0 + " " + result_1 + " Sets " + result_2 + " Reps " + result_3 + " Calories Burned" +"\n";
-            System.getProperty("line.separator");
-            System.getProperty("line.separator");
+            String result_4 = cursor.getString(4);
 
+            result += result_4+"\n"+ "Exercise " +result_0 + " " +"\n" + result_1 + " Sets " +"\n" + result_2 + " Reps " +"\n" + result_3 + " Calories Burned" +"\n"  +"\n";
+            System.getProperty("line.separator");
+            System.getProperty("line.separator");
         }
-
         cursor.close();
-
         db.close();
         return result;
     }
@@ -105,17 +115,17 @@ public class mydbhandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext())
         {
+            // ADD DAY/DATE TO DBASE
             String result_0 = cursor.getString(0);
             String result_1 = cursor.getString(1);
             String result_2 = cursor.getString(2);
-             result +=  "food: " +result_0 + " meal: " + result_1 + " calories: " + result_2 +  "\n";
-            System.getProperty("line.separator");
-            System.getProperty("line.separator");
+            String result_3 = cursor.getString(3);
 
+            result += result_3+ "\n"+"food: " +result_0  + "\n" +"meal: " + result_1 +"\n"+ "calories: " + result_2 + "\n" +"\n";
+            System.getProperty("line.separator");
+            System.getProperty("line.separator");
         }
-
         cursor.close();
-
         db.close();
         return result;
     }

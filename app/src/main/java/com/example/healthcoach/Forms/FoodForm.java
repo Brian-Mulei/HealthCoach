@@ -1,7 +1,5 @@
 package com.example.healthcoach.Forms;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,32 +8,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.healthcoach.FoodTrack;
 import com.example.healthcoach.HomePage;
-import com.example.healthcoach.Models.Model;
 import com.example.healthcoach.R;
 import com.example.healthcoach.mydbhandler;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class FoodForm extends AppCompatActivity {
 
     EditText calorie,foodName,meall;
     Button cancel ,add;
-    DatabaseReference databaseReference;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_form);
 
+        //link to layout components
          calorie=findViewById(R.id.calorie);
          meall=findViewById(R.id.meal);
-         //  reference to the firebase dbase
-         databaseReference = FirebaseDatabase.getInstance().getReference("User");
-
         foodName=findViewById(R.id.foodName);
         add =findViewById(R.id.add);
         cancel=findViewById(R.id.cancel);
@@ -60,25 +57,21 @@ public class FoodForm extends AppCompatActivity {
 
     }
 
+    //send data to database
     private void send() {
 
     String meal=meall.getText().toString().trim();
     String calories=calorie.getText().toString().trim();
     String food=foodName.getText().toString().trim();
-        DatabaseReference mDatabase;
-// ...
-        String clientId = databaseReference.push().getKey();
-
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        String personName = acct.getDisplayName();
-
+    Date date = Calendar.getInstance().getTime();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+    String strDate = dateFormat.format(date);
         if (TextUtils.isEmpty(food)  ) {
             Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
         else {
 
-            mydbhandler handler=new mydbhandler(FoodForm.this); handler.addFood(food,meal,calories);
+            mydbhandler handler=new mydbhandler(FoodForm.this);
+            handler.addFood(food,meal,calories,strDate);
 
             Toast.makeText(this, "Food Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(FoodForm.this, FoodTrack.class));

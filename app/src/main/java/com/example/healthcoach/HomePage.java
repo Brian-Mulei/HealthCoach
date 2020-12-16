@@ -49,7 +49,7 @@ public class HomePage extends AppCompatActivity   {
         steps =findViewById(R.id.steps_title);
         exercise =findViewById(R.id.exerciseTab);
         Food=findViewById(R.id.dietTab);
-
+            //methods for clicking on the cards
         Food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,15 +72,17 @@ public class HomePage extends AppCompatActivity   {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if (sensorEvent!= null){
-                    //get the acceleration of the axies
+                    //get the acceleration of the axes
                     float x_acceleration = sensorEvent.values[0];
                     float y_acceleration = sensorEvent.values[1];
                     float z_acceleration = sensorEvent.values[2];
 
+                    //calculating steps
                     double Magnitude = Math.sqrt(x_acceleration*x_acceleration + y_acceleration*y_acceleration + z_acceleration*z_acceleration);
                     double MagnitudeDelta = Magnitude-MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
-                //if magnitude delta is lowwer, sensr is more sensitivity
+
+                //if magnitude delta is lower, sensor is more sensitivity
                     if (MagnitudeDelta > 3){
                         stepCount++;
                     }

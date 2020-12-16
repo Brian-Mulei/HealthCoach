@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //authentication
-       GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+       GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
@@ -68,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
+            //if successful go to homepage
            Intent intent=new Intent(MainActivity.this, HomePage.class);
            startActivity(intent);
-        } catch (ApiException e) {
+        }
+        catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("Error" ,"signInResult:failed code=" + e.getStatusCode());

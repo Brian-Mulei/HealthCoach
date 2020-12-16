@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/healthcoachlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthCoach">
-        <activity android:name=".Forms.ExericseForm"></activity>
+        <activity android:name=".Forms.ExericseForm" />
         <activity android:name=".Forms.FoodForm" />
         <activity android:name=".dietRecommend" />
         <activity android:name=".FoodTrack" />
