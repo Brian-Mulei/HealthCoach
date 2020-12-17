@@ -99,7 +99,7 @@ public class mydbhandler extends SQLiteOpenHelper {
             String result_3 = cursor.getString(3);
             String result_4 = cursor.getString(4);
 
-            result += result_4+"\n"+ "Exercise " +result_0 + " " +"\n" + result_1 + " Sets " +"\n" + result_2 + " Reps " +"\n" + result_3 + " Calories Burned" +"\n"  +"\n";
+            result += result_4+"\n"+ "  Exercise " +result_0 + " " +"\n" + result_1 + "  Sets " +"\n" + result_2 + "  Reps " +"\n" + result_3 + "  Calories Burned" +"\n"  +"\n";
             System.getProperty("line.separator");
             System.getProperty("line.separator");
         }
@@ -121,7 +121,7 @@ public class mydbhandler extends SQLiteOpenHelper {
             String result_2 = cursor.getString(2);
             String result_3 = cursor.getString(3);
 
-            result += result_3+ "\n"+"food: " +result_0  + "\n" +"meal: " + result_1 +"\n"+ "calories: " + result_2 + "\n" +"\n";
+            result += result_3+ "\n"+" food: " +result_0  + "\n" +" meal: " + result_1 +"\n"+ "  calories: " + result_2 + "\n" +"\n";
             System.getProperty("line.separator");
             System.getProperty("line.separator");
         }

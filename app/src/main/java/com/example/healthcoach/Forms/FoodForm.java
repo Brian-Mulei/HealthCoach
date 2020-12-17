@@ -42,7 +42,7 @@ public class FoodForm extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                         send();
-                 startActivity(new Intent(FoodForm.this, HomePage.class));
+                 startActivity(new Intent(FoodForm.this, FoodTrack.class));
 
              }
          });
@@ -66,9 +66,7 @@ public class FoodForm extends AppCompatActivity {
     Date date = Calendar.getInstance().getTime();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
     String strDate = dateFormat.format(date);
-        if (TextUtils.isEmpty(food)  ) {
-            Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
-        else {
+
 
             mydbhandler handler=new mydbhandler(FoodForm.this);
             handler.addFood(food,meal,calories,strDate);
@@ -76,7 +74,7 @@ public class FoodForm extends AppCompatActivity {
             Toast.makeText(this, "Food Information Sent", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(FoodForm.this, FoodTrack.class));
 
-        }
+
     }
 
 }

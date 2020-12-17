@@ -95,7 +95,7 @@ public class HomePage extends AppCompatActivity   {
                     MagnitudePrevious = Magnitude;
 
                 //if magnitude delta is lower, sensor is more sensitivity
-                    if (MagnitudeDelta > 3){
+                    if (MagnitudeDelta > 5){
                         stepCount++;
                     }
                     steps.setText(stepCount.toString() +"/5000 steps");

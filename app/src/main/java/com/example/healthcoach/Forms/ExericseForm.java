@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.healthcoach.ExerciseTrack;
 import com.example.healthcoach.FoodTrack;
 import com.example.healthcoach.HomePage;
 import com.example.healthcoach.R;
@@ -45,7 +46,7 @@ public class ExericseForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 send();
-                startActivity(new Intent(ExericseForm.this, HomePage.class));
+                startActivity(new Intent(ExericseForm.this, ExerciseTrack.class));
 
             }
         });
@@ -65,30 +66,27 @@ public class ExericseForm extends AppCompatActivity {
 
         String sets= set.getText().toString().trim();
         String reps=rep.getText().toString().trim();
-       Double repitiion = Double.parseDouble(rep.getText().toString());
+        String exercises=exercise.getText().toString().trim();
+
+
+         Double repitiion = Double.parseDouble(rep.getText().toString());
         Double setition = Double.parseDouble(set.getText().toString());
 
         double calorieBurner =repitiion*setition*15;
 
         String calorieBurned=String.valueOf(calorieBurner);
-        String exercises=exercise.getText().toString().trim();
+
          Date date = Calendar.getInstance().getTime();
          DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
          String strDate = dateFormat.format(date);
 
 
-         if (TextUtils.isEmpty(exercises)  ) {
-            Toast.makeText(this, "Enter Required details", Toast.LENGTH_SHORT).show(); }
-        else {
-
             mydbhandler handler=new mydbhandler(ExericseForm.this);
             handler.addEx(exercises,sets,reps,calorieBurned,strDate);
 
-            Toast.makeText(this, "Exercise Information Sent", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(ExericseForm.this, FoodTrack.class));
+             startActivity(new Intent(ExericseForm.this, FoodTrack.class));
 
         }
     }
 
 
-}
