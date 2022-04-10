@@ -31,10 +31,8 @@ public class MainActivity extends AppCompatActivity {
         google_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.google_button:
-                        signIn();
-                        break;
+                if (v.getId() == R.id.google_button) {
+                    signIn();
                     // ...
                 }
             }

@@ -17,8 +17,9 @@
         <activity android:name=".ExerciseTrack" />
 
         <activity android:name=".Settings" />
-        <activity android:name=".HomePage" />
+        <activity android:name=".HomePage"    />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

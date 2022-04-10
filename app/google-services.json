@@ -1,26 +1,19 @@
 {
   "project_info": {
     "project_number": "123259580230",
+    "firebase_url": "https://healthcoach-1606766646319-default-rtdb.firebaseio.com",
     "project_id": "healthcoach-1606766646319",
     "storage_bucket": "healthcoach-1606766646319.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123259580230:android:4e6e09afbcb76dba283f47",
+        "mobilesdk_app_id": "1:123259580230:android:023765d375a2a615283f47",
         "android_client_info": {
           "package_name": "com.example.healthcoach"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "123259580230-lh4hpo45ufs851ll4p86eoar1r9cdcbn.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.healthcoach",
-            "certificate_hash": "46bc7bd3ef5db580d3fc252dad59a0f48a11ee83"
-          }
-        },
         {
           "client_id": "123259580230-2drhr6ejo4fq5ru9pqlauiprjakmmpae.apps.googleusercontent.com",
           "client_type": 3
