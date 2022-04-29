@@ -33,7 +33,7 @@ public class ExericseForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exericse_form);
          GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-         String personName = acct.getDisplayName();
+         //String personName = acct.getDisplayName();
 
          set=findViewById(R.id.sets);
         rep=findViewById(R.id.reps);
@@ -84,7 +84,6 @@ public class ExericseForm extends AppCompatActivity {
             mydbhandler handler=new mydbhandler(ExericseForm.this);
             handler.addEx(exercises,sets,reps,calorieBurned,strDate);
 
-             startActivity(new Intent(ExericseForm.this, FoodTrack.class));
 
         }
     }

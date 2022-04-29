@@ -55,6 +55,7 @@ public class HomePage extends AppCompatActivity   {
         exercise =findViewById(R.id.exerciseTab);
         Food=findViewById(R.id.dietTab);
         settings=findViewById(R.id.setting);
+
              //methods for clicking on the cards
         Food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +137,7 @@ public class HomePage extends AppCompatActivity   {
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        stepCount = sharedPreferences.getInt("stepCount", 0);
+        stepCount = sharedPreferences.getInt("stepCount", stepCount);
     }
 
 

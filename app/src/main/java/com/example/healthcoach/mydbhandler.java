@@ -16,15 +16,19 @@ public class mydbhandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Database Name
     private static final String DATABASE_NAME = "MY_DATABASE";
+
     private static final String EXERCISE  = "EX_TABLE";
     private static final String FOOD  = "FOOD_TABLE";
+
     private static final String EXERCISE_NAME = "name";
     private static final String EX_SET = "sets";
     private static final String EX_REP = "repis";
     private static final String EX_CALORIE = "calorie";
+
     private static final String FOOD_NAME = "name";
     private static final String FOOD_TYPE = "type";
     private static final String FOOD_TIME="dofinput";
+
     private static final String EX_TIME="dofinput";
 
     private static final String FOOD_CALORI = "calorie";
